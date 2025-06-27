@@ -4,42 +4,135 @@
     <meta charset="UTF-8">
     <title>Unused coupons</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        h1 { margin-bottom: 20px; }
-        #searchBar { padding: 8px; width: 300px; margin-bottom: 20px; }
-        .card-list { display: flex; flex-wrap: wrap; gap: 20px; padding: 0; }
-        .card {
+        :root {
+            --main-bg: #f5f8fa;
+            --header-bg: #159957;
+            --header-bg-grad: linear-gradient(120deg, #155799, #159957);
+            --header-color: #fff;
+            --card-bg: #fff;
+            --card-border: #e1e4e8;
+            --card-shadow: 0 2px 8px rgba(21,89,151,0.08);
+            --accent: #159957;
+            --accent-hover: #155799;
+        }
+        body {
+            font-family: "Segoe UI", "Helvetica Neue", Arial, "Liberation Sans", sans-serif;
+            background: var(--main-bg);
+            margin: 0;
+            min-height: 100vh;
+        }
+        header {
+            background: var(--header-bg-grad);
+            color: var(--header-color);
+            padding: 40px 0 30px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(21,89,151,0.10);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        #searchBar {
+            display: block;
+            margin: 0 auto 30px auto;
+            padding: 12px 16px;
+            width: 320px;
+            border: 1px solid #cfd8dc;
+            border-radius: 6px;
+            font-size: 1em;
             background: #fff;
-            border: 1px solid #eee;
+            transition: border 0.2s;
+        }
+        #searchBar:focus {
+            border: 1.5px solid var(--accent);
+            outline: none;
+        }
+        .card-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            padding: 0 0 40px 0;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            padding: 20px;
-            width: 250px;
+            box-shadow: var(--card-shadow);
+            padding: 24px 20px 18px 20px;
+            width: 270px;
             box-sizing: border-box;
-            transition: box-shadow 0.2s;
+            transition: box-shadow 0.2s, border 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
         .card:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 24px rgba(21,89,151,0.16);
+            border: 1.5px solid var(--accent);
         }
         .card-title {
-            font-size: 1.1em;
+            font-size: 1.2em;
             font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .card-content {
-            display: none;
-            margin-top: 10px;
+            margin-bottom: 12px;
+            color: var(--accent);
         }
         .card-field {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            font-size: 1em;
         }
         .card-label {
             font-weight: bold;
+            color: #444;
+        }
+        .toggle-btn {
+            margin-top: 8px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+            align-self: stretch;
+        }
+        .toggle-btn:hover {
+            background: var(--accent-hover);
+        }
+        .card-content {
+            display: none;
+            margin-top: 14px;
+            width: 100%;
+            animation: fadeIn 0.2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 700px) {
+            .card-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 95vw;
+                max-width: 340px;
+            }
+            #searchBar {
+                width: 90vw;
+                max-width: 340px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Lista di Elementi</h1>
+    <header>
+        <h1>Lista di Elementi</h1>
+    </header>
     <input type="text" id="searchBar" placeholder="Cerca...">
     <div class="card-list" id="cardList">
         <div class="card">
