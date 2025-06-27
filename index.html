@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Unused coupons</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { margin-bottom: 20px; }
+        #searchBar { padding: 8px; width: 300px; margin-bottom: 20px; }
+        .card-list { display: flex; flex-wrap: wrap; gap: 20px; padding: 0; }
+        .card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 20px;
+            width: 250px;
+            box-sizing: border-box;
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .card-content {
+            display: none;
+            margin-top: 10px;
+        }
+        .card-field {
+            margin-bottom: 6px;
+        }
+        .card-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista di Elementi</h1>
+    <input type="text" id="searchBar" placeholder="Cerca...">
+    <div class="card-list" id="cardList">
+        <div class="card">
+            <div class="card-title">Coupon Sconto 10%</div>
+            <div class="card-field"><span class="card-label">Codice:</span> SCONTO10</div>
+            <button class="toggle-btn">Mostra dettagli</button>
+            <div class="card-content">
+                <div class="card-field"><span class="card-label">Descrizione:</span> Risparmia il 10% sul tuo prossimo acquisto.</div>
+                <div class="card-field"><span class="card-label">Scadenza:</span> 31/12/2024</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Offerta Spedizione Gratuita</div>
+            <div class="card-field"><span class="card-label">Codice:</span> SPEDFREE</div>
+            <button class="toggle-btn">Mostra dettagli</button>
+            <div class="card-content">
+                <div class="card-field"><span class="card-label">Descrizione:</span> Spedizione gratuita su ordini superiori a 50€.</div>
+                <div class="card-field"><span class="card-label">Scadenza:</span> 30/09/2024</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Buono Regalo 5€</div>
+            <div class="card-field"><span class="card-label">Codice:</span> REGALO5</div>
+            <button class="toggle-btn">Mostra dettagli</button>
+            <div class="card-content">
+                <div class="card-field"><span class="card-label">Descrizione:</span> Ricevi un buono regalo da 5€.</div>
+                <div class="card-field"><span class="card-label">Scadenza:</span> 15/08/2024</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Promo Estate</div>
+            <div class="card-field"><span class="card-label">Codice:</span> ESTATE24</div>
+            <button class="toggle-btn">Mostra dettagli</button>
+            <div class="card-content">
+                <div class="card-field"><span class="card-label">Descrizione:</span> Offerte speciali per l'estate.</div>
+                <div class="card-field"><span class="card-label">Scadenza:</span> 31/07/2024</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Cashback 20%</div>
+            <div class="card-field"><span class="card-label">Codice:</span> CASH20</div>
+            <button class="toggle-btn">Mostra dettagli</button>
+            <div class="card-content">
+                <div class="card-field"><span class="card-label">Descrizione:</span> Ottieni il 20% di cashback sui tuoi acquisti.</div>
+                <div class="card-field"><span class="card-label">Scadenza:</span> 10/10/2024</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Offerta Lampo</div>
+            <div class="card-field"><span class="card-label">Codice:</span> LAMPO24</div>
+            <button class="toggle-btn">Mostra dettagli</button>
+            <div class="card-content">
+                <div class="card-field"><span class="card-label">Descrizione:</span> Offerta valida solo per poche ore!</div>
+                <div class="card-field"><span class="card-label">Scadenza:</span> 05/07/2024</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const searchBar = document.getElementById('searchBar');
+        const cardList = document.getElementById('cardList');
+        const cards = Array.from(cardList.getElementsByClassName('card'));
+
+        searchBar.addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+
+        // Toggle card content visibility
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    this.textContent = 'Mostra dettagli';
+                } else {
+                    content.style.display = 'block';
+                    this.textContent = 'Nascondi dettagli';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
