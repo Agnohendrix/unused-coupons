@@ -30,20 +30,6 @@
             box-shadow: 0 2px 8px rgba(21,89,151,0.10);
             position: relative;
         }
-        .visit-counter {
-            position: absolute;
-            top: 18px;
-            right: 32px;
-            background: rgba(21, 89, 151, 0.85);
-            color: #fff;
-            padding: 7px 16px;
-            border-radius: 18px;
-            font-size: 1em;
-            font-weight: 500;
-            box-shadow: 0 1px 4px rgba(21,89,151,0.10);
-            z-index: 2;
-            letter-spacing: 0.5px;
-        }
         header h1 {
             margin: 0;
             font-size: 2.5em;
@@ -141,18 +127,11 @@
                 width: 90vw;
                 max-width: 340px;
             }
-            .visit-counter {
-                right: 12px;
-                top: 12px;
-                font-size: 0.95em;
-                padding: 6px 12px;
-            }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="visit-counter" id="visitCounter"></div>
         <h1>Lista di Elementi</h1>
     </header>
     <input type="text" id="searchBar" placeholder="Cerca...">
@@ -164,7 +143,6 @@
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Risparmia il 10% sul tuo prossimo acquisto.</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 31/12/2024</div>
-                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
         <div class="card">
@@ -174,7 +152,6 @@
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Spedizione gratuita su ordini superiori a 50€.</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 30/09/2024</div>
-                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
         <div class="card">
@@ -184,7 +161,6 @@
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Ricevi un buono regalo da 5€.</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 15/08/2024</div>
-                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
         <div class="card">
@@ -194,7 +170,6 @@
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Offerte speciali per l'estate.</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 31/07/2024</div>
-                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
         <div class="card">
@@ -204,7 +179,6 @@
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Ottieni il 20% di cashback sui tuoi acquisti.</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 10/10/2024</div>
-                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
         <div class="card">
@@ -214,24 +188,10 @@
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Offerta valida solo per poche ore!</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 05/07/2024</div>
-                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
     </div>
     <script>
-        // Contatore visite PHP
-        function updateVisitCounter() {
-            fetch('visit_counter.php')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('visitCounter').textContent = `Visite: ${data.visite}`;
-                })
-                .catch(() => {
-                    document.getElementById('visitCounter').textContent = 'Visite: ?';
-                });
-        }
-        updateVisitCounter();
-
         const searchBar = document.getElementById('searchBar');
         const cardList = document.getElementById('cardList');
         const cards = Array.from(cardList.getElementsByClassName('card'));
@@ -244,13 +204,11 @@
             });
         });
 
-        // Toggle card content visibility e contatore visualizzazioni
+        // Toggle card content visibility
         document.querySelectorAll('.card').forEach(card => {
             const btn = card.querySelector('.toggle-btn');
             const content = card.querySelector('.card-content');
             const code = card.querySelector('.card-code');
-            const viewCounter = card.querySelector('.card-view-counter');
-            let count = 0;
             btn.addEventListener('click', function() {
                 if (content.style.display === 'block') {
                     content.style.display = 'none';
@@ -260,8 +218,6 @@
                     content.style.display = 'block';
                     code.style.display = 'block';
                     this.textContent = 'Nascondi dettagli';
-                    count++;
-                    viewCounter.textContent = count;
                 }
             });
         });
