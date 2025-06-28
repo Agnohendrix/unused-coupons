@@ -152,66 +152,86 @@
 </head>
 <body>
     <header>
+        <div class="visit-counter" id="visitCounter"></div>
         <h1>Lista di Elementi</h1>
     </header>
     <input type="text" id="searchBar" placeholder="Cerca...">
     <div class="card-list" id="cardList">
         <div class="card">
             <div class="card-title">Coupon Sconto 10%</div>
-            <div class="card-field"><span class="card-label">Codice:</span> SCONTO10</div>
+            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> SCONTO10</div>
             <button class="toggle-btn">Mostra dettagli</button>
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Risparmia il 10% sul tuo prossimo acquisto.</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 31/12/2024</div>
+                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
         <div class="card">
             <div class="card-title">Offerta Spedizione Gratuita</div>
-            <div class="card-field"><span class="card-label">Codice:</span> SPEDFREE</div>
+            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> SPEDFREE</div>
             <button class="toggle-btn">Mostra dettagli</button>
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Spedizione gratuita su ordini superiori a 50€.</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 30/09/2024</div>
+                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
         <div class="card">
             <div class="card-title">Buono Regalo 5€</div>
-            <div class="card-field"><span class="card-label">Codice:</span> REGALO5</div>
+            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> REGALO5</div>
             <button class="toggle-btn">Mostra dettagli</button>
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Ricevi un buono regalo da 5€.</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 15/08/2024</div>
+                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
         <div class="card">
             <div class="card-title">Promo Estate</div>
-            <div class="card-field"><span class="card-label">Codice:</span> ESTATE24</div>
+            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> ESTATE24</div>
             <button class="toggle-btn">Mostra dettagli</button>
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Offerte speciali per l'estate.</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 31/07/2024</div>
+                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
         <div class="card">
             <div class="card-title">Cashback 20%</div>
-            <div class="card-field"><span class="card-label">Codice:</span> CASH20</div>
+            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> CASH20</div>
             <button class="toggle-btn">Mostra dettagli</button>
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Ottieni il 20% di cashback sui tuoi acquisti.</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 10/10/2024</div>
+                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
         <div class="card">
             <div class="card-title">Offerta Lampo</div>
-            <div class="card-field"><span class="card-label">Codice:</span> LAMPO24</div>
+            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> LAMPO24</div>
             <button class="toggle-btn">Mostra dettagli</button>
             <div class="card-content">
                 <div class="card-field"><span class="card-label">Descrizione:</span> Offerta valida solo per poche ore!</div>
                 <div class="card-field"><span class="card-label">Scadenza:</span> 05/07/2024</div>
+                <div class="card-field"><span class="card-label">Visualizzazioni dettagli:</span> <span class="card-view-counter">0</span></div>
             </div>
         </div>
     </div>
     <script>
+        // Contatore visite PHP
+        function updateVisitCounter() {
+            fetch('visit_counter.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('visitCounter').textContent = `Visite: ${data.visite}`;
+                })
+                .catch(() => {
+                    document.getElementById('visitCounter').textContent = 'Visite: ?';
+                });
+        }
+        updateVisitCounter();
+
         const searchBar = document.getElementById('searchBar');
         const cardList = document.getElementById('cardList');
         const cards = Array.from(cardList.getElementsByClassName('card'));
@@ -224,16 +244,24 @@
             });
         });
 
-        // Toggle card content visibility
-        document.querySelectorAll('.toggle-btn').forEach(btn => {
+        // Toggle card content visibility e contatore visualizzazioni
+        document.querySelectorAll('.card').forEach(card => {
+            const btn = card.querySelector('.toggle-btn');
+            const content = card.querySelector('.card-content');
+            const code = card.querySelector('.card-code');
+            const viewCounter = card.querySelector('.card-view-counter');
+            let count = 0;
             btn.addEventListener('click', function() {
-                const content = this.nextElementSibling;
                 if (content.style.display === 'block') {
                     content.style.display = 'none';
+                    code.style.display = 'none';
                     this.textContent = 'Mostra dettagli';
                 } else {
                     content.style.display = 'block';
+                    code.style.display = 'block';
                     this.textContent = 'Nascondi dettagli';
+                    count++;
+                    viewCounter.textContent = count;
                 }
             });
         });
