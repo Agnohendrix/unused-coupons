@@ -1,0 +1,38 @@
+[
+  {
+    "titolo": "Haier 30%",
+    "codice": "VODAFONE-s6tmyh",
+    "descrizione": "30% di sconto extra su elettrodomestici selezionati, anche su quelli gia' in offerta!",
+    "scadenza": "31/12/2025"
+  },
+  {
+    "titolo": "Piquadro.com 20%",
+    "codice": "VODAPQ25",
+    "descrizione": "Sconto del 20% su Piquadro.com.",
+    "scadenza": "15/07/2025"
+  },
+  {
+    "titolo": "Buono Regalo 5€",
+    "codice": "REGALO5",
+    "descrizione": "Ricevi un buono regalo da 5€.",
+    "scadenza": "15/08/2024"
+  },
+  {
+    "titolo": "Promo Estate",
+    "codice": "ESTATE24",
+    "descrizione": "Offerte speciali per l'estate.",
+    "scadenza": "31/07/2024"
+  },
+  {
+    "titolo": "Cashback 20%",
+    "codice": "CASH20",
+    "descrizione": "Ottieni il 20% di cashback sui tuoi acquisti.",
+    "scadenza": "10/10/2024"
+  },
+  {
+    "titolo": "Offerta Lampo",
+    "codice": "LAMPO24",
+    "descrizione": "Offerta valida solo per poche ore!",
+    "scadenza": "05/07/2024"
+  }
+]

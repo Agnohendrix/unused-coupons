@@ -161,96 +161,69 @@
     </header>
     <input type="text" id="searchBar" placeholder="Cerca coupon...">
     <div class="card-list" id="cardList">
-        <div class="card">
-            <div class="card-title">Haier 30%</div>
-            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> VODAFONE-s6tmyh</div>
-            <button class="toggle-btn">Mostra dettagli</button>
-            <div class="card-content">
-                <div class="card-field"><span class="card-label">Descrizione:</span> 30% di sconto extra su elettrodomestici selezionati, anche su quelli gia' in offerta!</div>
-                <div class="card-field"><span class="card-label">Scadenza:</span> 31/12/2025</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-title">Piquadro.com 20%</div>
-            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> VODAPQ25</div>
-            <button class="toggle-btn">Mostra dettagli</button>
-            <div class="card-content">
-                <div class="card-field"><span class="card-label">Descrizione:</span> Sconto del 20% su Piquadro.com.</div>
-                <div class="card-field"><span class="card-label">Scadenza:</span> 15/07/2025</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-title">Buono Regalo 5€</div>
-            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> REGALO5</div>
-            <button class="toggle-btn">Mostra dettagli</button>
-            <div class="card-content">
-                <div class="card-field"><span class="card-label">Descrizione:</span> Ricevi un buono regalo da 5€.</div>
-                <div class="card-field"><span class="card-label">Scadenza:</span> 15/08/2024</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-title">Promo Estate</div>
-            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> ESTATE24</div>
-            <button class="toggle-btn">Mostra dettagli</button>
-            <div class="card-content">
-                <div class="card-field"><span class="card-label">Descrizione:</span> Offerte speciali per l'estate.</div>
-                <div class="card-field"><span class="card-label">Scadenza:</span> 31/07/2024</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-title">Cashback 20%</div>
-            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> CASH20</div>
-            <button class="toggle-btn">Mostra dettagli</button>
-            <div class="card-content">
-                <div class="card-field"><span class="card-label">Descrizione:</span> Ottieni il 20% di cashback sui tuoi acquisti.</div>
-                <div class="card-field"><span class="card-label">Scadenza:</span> 10/10/2024</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-title">Offerta Lampo</div>
-            <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> LAMPO24</div>
-            <button class="toggle-btn">Mostra dettagli</button>
-            <div class="card-content">
-                <div class="card-field"><span class="card-label">Descrizione:</span> Offerta valida solo per poche ore!</div>
-                <div class="card-field"><span class="card-label">Scadenza:</span> 05/07/2024</div>
-            </div>
-        </div>
+        <!-- Le card verranno popolate via JS -->
     </div>
     <footer style="text-align:center; padding: 24px 0 16px 0; color: #888; font-size: 1em; background: #f5f8fa;">
         Credits: <a href="https://github.com/Agnohendrix" target="_blank" style="color:#159957; text-decoration:underline;">Agno</a>
     </footer>
     <script>
-        const searchBar = document.getElementById('searchBar');
-        const cardList = document.getElementById('cardList');
-        const cards = Array.from(cardList.getElementsByClassName('card'));
+        async function caricaCoupon() {
+            const cardList = document.getElementById('cardList');
+            cardList.innerHTML = '';
+            let coupons = [];
+            try {
+                const res = await fetch('coupons.json');
+                coupons = await res.json();
+            } catch (e) {
+                cardList.innerHTML = '<div style="color:red">Errore nel caricamento dei coupon.</div>';
+                return;
+            }
+            coupons.forEach(coupon => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-title">${coupon.titolo}</div>
+                    <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> ${coupon.codice}</div>
+                    <button class="toggle-btn">Mostra dettagli</button>
+                    <div class="card-content">
+                        <div class="card-field"><span class="card-label">Descrizione:</span> ${coupon.descrizione}</div>
+                        <div class="card-field"><span class="card-label">Scadenza:</span> ${coupon.scadenza}</div>
+                    </div>
+                `;
+                cardList.appendChild(card);
+            });
 
+            // Ricollega i listener ai nuovi elementi
+            document.querySelectorAll('.card').forEach(card => {
+                const btn = card.querySelector('.toggle-btn');
+                const content = card.querySelector('.card-content');
+                const code = card.querySelector('.card-code');
+                btn.addEventListener('click', function() {
+                    if (content.style.display === 'block') {
+                        content.style.display = 'none';
+                        code.style.display = 'none';
+                        this.textContent = 'Mostra dettagli';
+                    } else {
+                        content.style.display = 'block';
+                        code.style.display = 'block';
+                        this.textContent = 'Nascondi dettagli';
+                    }
+                });
+            });
+        }
+
+        caricaCoupon();
+
+        // Ricopia qui la funzione di ricerca e responsive dinamico
+        const searchBar = document.getElementById('searchBar');
         searchBar.addEventListener('input', function() {
             const filter = this.value.toLowerCase();
-            cards.forEach(card => {
+            document.querySelectorAll('.card').forEach(card => {
                 const text = card.textContent.toLowerCase();
                 card.style.display = text.includes(filter) ? '' : 'none';
             });
         });
 
-        // Toggle card content visibility
-        document.querySelectorAll('.card').forEach(card => {
-            const btn = card.querySelector('.toggle-btn');
-            const content = card.querySelector('.card-content');
-            const code = card.querySelector('.card-code');
-            btn.addEventListener('click', function() {
-                if (content.style.display === 'block') {
-                    content.style.display = 'none';
-                    code.style.display = 'none';
-                    this.textContent = 'Mostra dettagli';
-                } else {
-                    content.style.display = 'block';
-                    code.style.display = 'block';
-                    this.textContent = 'Nascondi dettagli';
-                }
-            });
-        });
-
-        // Responsive dinamico JS
         function setMobileClass() {
             if (window.innerWidth <= 700) {
                 document.body.classList.add('mobile');
