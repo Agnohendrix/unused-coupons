@@ -167,6 +167,15 @@
         Credits: <a href="https://github.com/Agnohendrix" target="_blank" style="color:#159957; text-decoration:underline;">Agno</a>
     </footer>
     <script>
+        // Funzione di utilità per confrontare le date (formato: dd/mm/yyyy)
+        function isCouponValid(scadenza) {
+            const [giorno, mese, anno] = scadenza.split('/').map(Number);
+            const dataScadenza = new Date(anno, mese - 1, giorno, 23, 59, 59, 999);
+            const oggi = new Date();
+            // Coupon valido se la scadenza è oggi o futura
+            return dataScadenza >= oggi;
+        }
+
         async function caricaCoupon() {
             const cardList = document.getElementById('cardList');
             cardList.innerHTML = '';
@@ -176,6 +185,12 @@
                 coupons = await res.json();
             } catch (e) {
                 cardList.innerHTML = '<div style="color:red">Errore nel caricamento dei coupon.</div>';
+                return;
+            }
+            // Filtra solo i coupon non scaduti
+            coupons = coupons.filter(coupon => isCouponValid(coupon.scadenza));
+            if (coupons.length === 0) {
+                cardList.innerHTML = '<div style="color:#888">Nessun coupon disponibile.</div>';
                 return;
             }
             coupons.forEach(coupon => {
