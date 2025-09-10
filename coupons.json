@@ -30,9 +30,27 @@
     "scadenza": "10/10/2024"
   },
   {
+    "titolo": "6€ di sconto Libraccio.it",
+    "codice": "K8WNU57X",
+    "descrizione": "Il Codice sconto è valido per una spesa minima di 45 €. Non è utilizzabile nei negozi Libraccio, non è cumulabile con altri codici sconto ma è cumulabile con altre eventuali promozioni. Non è utilizzabile sui testi ",
+    "scadenza": "30/09/2025"
+  },
+{
     "titolo": "Offerta Lampo",
     "codice": "LAMPO24",
     "descrizione": "Offerta valida solo per poche ore!",
     "scadenza": "05/07/2024"
+  },
+  {
+    "titolo": "7€ di sconto sullo store online Caffè Borbone",
+    "codice": "S375P5VNRXLS",
+    "descrizione": "Lo sconto si applica su una spesa minima di 30€(al netto delle eventuali spese di spedizione)",
+    "scadenza": "30/09/2025"
+  },
+  {
+    "titolo": "Sconto del 40% sulla stampa delle foto con PhotoSì",
+    "codice": "9D1BA164",
+    "descrizione": "Sconto valido su una spesa minima di 25€, spese di spedizione escluse",
+    "scadenza": "30/09/2025"
   }
 ]

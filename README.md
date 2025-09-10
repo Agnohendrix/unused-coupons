@@ -1,6 +1,6 @@
 # unused-coupons
 A website that lists unused coupons for online shopping
-https://agnohendrix.github.io/unused-coupons/
+<a href="https://agnohendrix.github.io/unused-coupons/" target="_blank">https://agnohendrix.github.io/unused-coupons/</a>
 
 <!-- Barra di ricerca per filtrare i coupon -->
 <input type="text" id="searchBar" placeholder="Cerca per descrizione..." style="width: 100%; padding: 8px; margin-bottom: 16px; font-size: 1em;">
