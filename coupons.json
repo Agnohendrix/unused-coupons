@@ -54,9 +54,9 @@
     "scadenza": "30/09/2025"
   },
  {
-    "titolo": "Sconto di 5€ su una spesa minima di 10€",
+    "titolo": "Burger King - Sconto di 5€ su una spesa minima di 10€",
     "codice": "3TI3J2",
-    "descrizione": " Il codice promozionale non è cumulabile con altre eventuali promozioni in corso ed è utilizzabile solo su App Burger King Italia",
+    "descrizione": "Il codice promozionale non è cumulabile con altre eventuali promozioni in corso ed è utilizzabile solo su App Burger King Italia",
     "scadenza": "30/11/2025"
   },
 {
@@ -68,13 +68,13 @@
 {
     "titolo": "15€ di sconto su Camicissima",
     "codice": "404DD1AW3",
-    "descrizione": " Il codice sconto è applicato sul valore totale dello scontrino di importo pari almeno a 70€. Il codice sconto non è cumulabile con altri voucher in corso. Il codice sconto non è utilizzabile per l’acquisto di GiftCard Camicissima o di altri partner. Il codice sconto è valido solo sui prodotti non in saldo. Il codice è utilizzabile una sola volta e lo sconto non è frazionabile. Le spese di spedizione non concorrono al raggiungimento della soglia minima di spesa.",
+    "descrizione": "Il codice sconto è applicato sul valore totale dello scontrino di importo pari almeno a 70€. Il codice sconto non è cumulabile con altri voucher in corso. Il codice sconto non è utilizzabile per l’acquisto di GiftCard Camicissima o di altri partner. Il codice sconto è valido solo sui prodotti non in saldo. Il codice è utilizzabile una sola volta e lo sconto non è frazionabile. Le spese di spedizione non concorrono al raggiungimento della soglia minima di spesa.",
     "scadenza": "24/11/2025"
   },
 {
     "titolo": "Sconti fino al 40% su una selezione di elettrodomestici per casa e cucina Panasonic",
     "codice": "VH-X0BV1L",
-    "descrizione": " Questa promozione è valida solo per il Panasonic Online Store in Italia e non può essere riscattata presso altri rivenditori. La promozione è valida per un singolo acquisto solo per i prodotti mostrati nella pagina https://store.eu.panasonic.com/it-it/VodafoneHappy. Questa promozione è valida solo dal 17.10.2025 al 31.10.2025. Il codice sconto non è cumulabile con altre offerte promozionali o con prodotti già scontati. Non è possibile applicare lo sconto su acquisti già effettuati. Il prezzo scontato verrà visualizzato non appena il codice coupon verrà inserito nel campo corrispondente durante il processo di checkout nel Panasonic Online Store.",
+    "descrizione": "Questa promozione è valida solo per il Panasonic Online Store in Italia e non può essere riscattata presso altri rivenditori. La promozione è valida per un singolo acquisto solo per i prodotti mostrati nella pagina https://store.eu.panasonic.com/it-it/VodafoneHappy. Questa promozione è valida solo dal 17.10.2025 al 31.10.2025. Il codice sconto non è cumulabile con altre offerte promozionali o con prodotti già scontati. Non è possibile applicare lo sconto su acquisti già effettuati. Il prezzo scontato verrà visualizzato non appena il codice coupon verrà inserito nel campo corrispondente durante il processo di checkout nel Panasonic Online Store.",
     "scadenza": "31/10/2025"
   },
 {
@@ -82,5 +82,5 @@
     "codice": "HAPPYPED054715",
     "descrizione": "valida per chi non sia risultato cliente Telepass Base nei 30 giorni antecedenti l’adesione e che dal 8.9.25 al 9.11.25 aderisce al pacchetto Telepass Sempre (composto dal Contratto Telepass Base e Contratto Servizi di Mobilità) tramite i canali Vodafone: tali clienti avranno diritto a 12 mesi di canone gratuito del Pacchetto Telepass Sempre (poi 3,90€/mese con promo bundle). ",
     "scadenza": "09/11/2025"
-  },
+  }
 ]
