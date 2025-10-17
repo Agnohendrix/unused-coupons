@@ -52,5 +52,11 @@
     "codice": "9D1BA164",
     "descrizione": "Sconto valido su una spesa minima di 25€, spese di spedizione escluse",
     "scadenza": "30/09/2025"
+  },
+ {
+    "titolo": "Sconto di 5€ su una spesa minima di 10€",
+    "codice": "3TI3J2",
+    "descrizione": " Il codice promozionale non è cumulabile con altre eventuali promozioni in corso ed è utilizzabile solo su App Burger King Italia",
+    "scadenza": "30/11/2025"
   }
 ]
