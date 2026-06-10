@@ -324,7 +324,7 @@
                 fetch('https://api.countapi.xyz/get/agno-unused-coupons/coupon-' + code)
                     .then(res => res.json())
                     .then(data => {
-                        if (data.value) {
+                        if (data.value !== undefined) {
                             el.innerText = data.value + " usi";
 
                             if (data.value > 5) {
