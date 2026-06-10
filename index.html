@@ -5,6 +5,10 @@
     <title>Unused coupons</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script data-goatcounter="https://agnohendrix.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+
     <style>
         :root {
             --main-bg: #f5f8fa;
@@ -160,6 +164,28 @@
             width: 95vw !important;
             max-width: 420px !important;
         }
+
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1e293b;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 9999;
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -208,8 +234,29 @@
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="card-title">${coupon.titolo}</div>
-                    <div class="card-field card-code" style="display:none"><span class="card-label">Codice:</span> ${coupon.codice}</div>
-                    <button class="toggle-btn">Mostra dettagli</button>
+                   <div class="card-field card-code" style="display:none">
+                    <span class="card-label">Codice:</span> 
+                    <span class="code-value">${coupon.codice}</span>
+                    </div>
+
+                    <button class="toggle-btn copy-btn" data-code="${coupon.codice}" style="display:none">
+                    Copia codice
+                    </button>
+
+                    <button class="toggle-btn use-btn" data-code="${coupon.codice}">
+                    Mostra dettagli
+                    </button>
+
+                    <div class="card-field counter" data-code="${coupon.codice}">
+                    0 usi
+                    </div>
+                    
+                    <div class="card-field">
+                    <a href="${coupon.link}" target="_blank" class="offer-link">
+                        Vai all'offerta
+                    </a>
+                    </div>
+
                     <div class="card-content">
                         <div class="card-field"><span class="card-label">Descrizione:</span> ${coupon.descrizione}</div>
                         <div class="card-field"><span class="card-label">Scadenza:</span> ${coupon.scadenza}</div>
@@ -220,24 +267,74 @@
 
             // Ricollega i listener ai nuovi elementi
             document.querySelectorAll('.card').forEach(card => {
-                const btn = card.querySelector('.toggle-btn');
+                const btn = card.querySelector('.use-btn');
                 const content = card.querySelector('.card-content');
                 const code = card.querySelector('.card-code');
+                const copyBtn = card.querySelector('.copy-btn');
                 btn.addEventListener('click', function() {
                     if (content.style.display === 'block') {
                         content.style.display = 'none';
                         code.style.display = 'none';
+                        copyBtn.style.display = 'none';
                         this.textContent = 'Mostra dettagli';
                     } else {
                         content.style.display = 'block';
                         code.style.display = 'block';
+                        copyBtn.style.display = 'block';
                         this.textContent = 'Nascondi dettagli';
                     }
                 });
             });
+
+            document.querySelectorAll('.offer-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    const card = this.closest('.card');
+                    const code = card.querySelector('.counter').dataset.code;
+
+                    if (window.goatcounter) {
+                        goatcounter.count({
+                            path: 'click/' + code,
+                            title: 'Click offerta ' + code
+                        });
+                    }
+                });
+            });
+
+            
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // 👈 evita problemi con altri click
+
+                    const code = this.dataset.code;
+                    useCoupon(code, this);
+                });
+            });
+
+
+            // carica contatori dopo che le card esistono
+            loadCounters();
         }
 
         caricaCoupon();
+
+        function loadCounters() {
+            document.querySelectorAll('.counter').forEach(el => {
+                const code = el.dataset.code;
+
+                fetch('https://api.countapi.xyz/get/agno-unused-coupons/coupon-' + code)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.value) {
+                            el.innerText = data.value + " usi";
+
+                            if (data.value > 5) {
+                                el.innerText += " 🔥";
+                            }
+                        }
+                    })
+                    .catch(() => {});
+            });
+        }
 
         // Ricopia qui la funzione di ricerca e responsive dinamico
         const searchBar = document.getElementById('searchBar');
@@ -249,6 +346,36 @@
             });
         });
 
+        function useCoupon(code, el) {
+            // copia negli appunti
+            navigator.clipboard.writeText(code);
+
+            // tracking GoatCounter
+            if (window.goatcounter) {
+                goatcounter.count({
+                path: 'coupon/' + code,
+                title: 'Coupon ' + code
+                });
+            }
+
+            // contatore pubblico
+            fetch('https://api.countapi.xyz/hit/agno-unused-coupons/coupon-' + code)
+                .then(res => res.json())
+                .then(data => {
+                    const counterEl = el.closest('.card').querySelector('.counter');
+                    counterEl.innerText = data.value + " usi";
+
+                    if (data.value > 5) {
+                        counterEl.innerText += " 🔥";
+                    }
+                })
+                .catch(() => console.log("Errore contatore"));
+
+
+            showToast("✅ Codice copiato! Incollalo al checkout");
+        }
+
+
         function setMobileClass() {
             if (window.innerWidth <= 700) {
                 document.body.classList.add('mobile');
@@ -258,6 +385,19 @@
         }
         setMobileClass();
         window.addEventListener('resize', setMobileClass);
+
+        
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
     </script>
+    <div id="toast"></div>
 </body>
 </html>

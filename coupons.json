@@ -81,6 +81,14 @@
     "titolo": "12 mesi di abbonamento Telepass Sempre gratis e 100€ sui pedaggi",
     "codice": "HAPPYPED054715",
     "descrizione": "valida per chi non sia risultato cliente Telepass Base nei 30 giorni antecedenti l’adesione e che dal 8.9.25 al 9.11.25 aderisce al pacchetto Telepass Sempre (composto dal Contratto Telepass Base e Contratto Servizi di Mobilità) tramite i canali Vodafone: tali clienti avranno diritto a 12 mesi di canone gratuito del Pacchetto Telepass Sempre (poi 3,90€/mese con promo bundle). ",
-    "scadenza": "09/11/2025"
+    "scadenza": "09/11/2025",
+    "link" : "https://www.google.it"
+  },
+  {
+    "titolo": "45% di sconto su Equilibra",
+    "codice": "CRAZYWINDTRE45",
+    "descrizione": "Valido sui prodotti disponibili online senza spesa minima di acquisto",
+    "scadenza": "14/06/2026",
+    "link" : "https://www.equilibra.it"
   }
 ]
