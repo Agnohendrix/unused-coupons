@@ -14,10 +14,38 @@
     "link": "https://www.google.com/search?q=Maggiore"
   },
   {
-    "titolo": "Caff? Italiano - sconto del 30%",
-    "codice": "30ICILUC",
+    "titolo": "La Gazzetta dello Sport - Abbonamento a 14,99 Euro/anno, poi rinnovo 29,99 Euro/anno",
+    "codice": "FXQB-BDBB-YPYS-NK9M",
     "descrizione": "Prodotto in omaggio",
     "scadenza": "15/07/2026",
-    "link": "https://www.google.com/search?q=Caff%C3%A8%20Italiano"
+    "link": "https://www.google.com/search?q=La%20Gazzetta%20dello%20Sport"
+  },
+  {
+    "titolo": "Abbonamento semestrale gratuito ad Amica digital edition",
+    "codice": "HUYD-8DPC-WJ85-BHNK",
+    "descrizione": "Prodotto in omaggio",
+    "scadenza": "15/07/2026",
+    "link": "https://www.google.com/search?q=Abbonamento%20semestrale%20gratuito%20ad%20Amica%20digital%20edition"
+  },
+  {
+    "titolo": "Fever - 15% su 25 euro",
+    "codice": "FEVER-LUCKYDAYS",
+    "descrizione": "Prodotto in omaggio",
+    "scadenza": "15/07/2026",
+    "link": "https://www.google.com/search?q=Fever"
+  },
+  {
+    "titolo": "Limes Sito + Sfoglio Digitale 1 anno a 39,99 Euro, poi 99,99 Euro/anno",
+    "codice": "https://f0mw1lw2.r.eu-west-1.awstrack.me/L0/https:%2F%2Ftinyurl.com%2F2sx9k6nh/1/0102019eae908c8d-9874e099-ace7-4e79-bc00-1fc11687f543-000000/FGxP0G_eyfSpOnWdB2JZd0tgo94=473",
+    "descrizione": "Prodotto in omaggio",
+    "scadenza": "15/07/2026",
+    "link": "https://www.google.com/search?q=Limes%20Sito%20%2B%20Sfoglio%20Digitale%201%20anno%20a%2039%2C99%20Euro%2C%20poi%2099%2C99%20Euro%2Fanno"
+  },
+  {
+    "titolo": "Maggiore - Sconto fino al 15%",
+    "codice": null,
+    "descrizione": "Prodotto in omaggio",
+    "scadenza": "15/07/2026",
+    "link": "https://www.google.com/search?q=Maggiore"
   }
 ]
