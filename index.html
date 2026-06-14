@@ -232,36 +232,59 @@
             coupons.forEach(coupon => {
                 const card = document.createElement('div');
                 card.className = 'card';
+                
+                const isLink = coupon.codice && coupon.codice.startsWith('http');
+
                 card.innerHTML = `
                     <div class="card-title">${coupon.titolo}</div>
-                   <div class="card-field card-code" style="display:none">
-                    <span class="card-label">Codice:</span> 
-                    <span class="code-value">${coupon.codice}</span>
-                    </div>
 
-                    <button class="toggle-btn copy-btn" data-code="${coupon.codice}" style="display:none">
-                    Copia codice
-                    </button>
+                    ${!isLink ? `
+                        <div class="card-field card-code" style="display:none">
+                            <span class="card-label">Codice:</span> 
+                            <span class="code-value">${coupon.codice}</span>
+                        </div>
+
+                        <button class="toggle-btn copy-btn" data-code="${coupon.codice}" style="display:none">
+                            Copia codice
+                        </button>
+                    ` : ``}
 
                     <button class="toggle-btn use-btn" data-code="${coupon.codice}">
-                    Mostra dettagli
+                        Mostra dettagli
                     </button>
 
                     <div class="card-field counter" data-code="${coupon.codice}">
-                    0 usi
-                    </div>
-                    
-                    <div class="card-field">
-                    <a href="${coupon.link}" target="_blank" class="offer-link">
-                        Vai all'offerta
-                    </a>
+                        0 usi
                     </div>
 
                     <div class="card-content">
-                        <div class="card-field"><span class="card-label">Descrizione:</span> ${coupon.descrizione}</div>
-                        <div class="card-field"><span class="card-label">Scadenza:</span> ${coupon.scadenza}</div>
+
+                        ${isLink ? `
+                        <div class="card-field">
+                            <span class="card-label">Accesso:</span><br>
+                            <a href="${coupon.codice}" target="_blank" class="direct-link">
+                                Apri offerta
+                            </a>
+                        </div>
+                        ` : ``}
+
+                        <div class="card-field">
+                            <span class="card-label">Descrizione:</span> ${coupon.descrizione}
+                        </div>
+
+                        <div class="card-field">
+                            <span class="card-label">Scadenza:</span> ${coupon.scadenza}
+                        </div>
+
+                        <div class="card-field">
+                            <a href="${coupon.link}" target="_blank" class="offer-link">
+                                Vai all'offerta
+                            </a>
+                        </div>
+
                     </div>
                 `;
+
                 cardList.appendChild(card);
             });
 
