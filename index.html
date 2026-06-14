@@ -2,10 +2,26 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Unused coupons</title>
+    <title>Codici sconto oggi - Coupon Winday, offerte aggiornate</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Trova codici sconto aggiornati ogni giorno: Winday, abbonamenti, offerte online. Coupon automatici e verificati.">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
+    <meta property="og:title" content="Codici sconto aggiornati ogni giorno">
+    <meta property="og:description" content="Trova coupon e offerte aggiornate automaticamente">
+    <meta property="og:url" content="https://agnohendrix.github.io/unused-coupons/">
+    <meta property="og:type" content="website">
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Codici sconto aggiornati">
+    <meta name="twitter:description" content="Offerte e coupon automatici">
+   
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://agnohendrix.github.io/unused-coupons">
+
+
     <script data-goatcounter="https://agnohendrix.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 
@@ -190,19 +206,28 @@
 </head>
 <body>
     <header>
-        <h1>Coupons</h1>
+        <h1>Codici sconto aggiornati oggi</h1>
         <div class="subtitle">Nuovi coupon ogni giorno!</div>
     </header>
-    <input type="text" id="searchBar" placeholder="Cerca coupon...">
-    <div class="card-list" id="cardList">
-        <!-- Le card verranno popolate via JS -->
-    </div>
+    
+<div style="text-align:center; margin-bottom:20px; color:#555;">
+  Trova codici sconto e offerte aggiornate automaticamente ogni giorno.
+</div>
+    <label for="searchBar" style="display:none;">Cerca coupon</label>
+    <input type="text" id="searchBar" placeholder="Cerca marca o sconto (es. HP, 10%)">
+    <h2 style="text-align:center;">Offerte disponibili</h2>
+    <main>
+    <div class="card-list" id="cardList"></div>
+    </main>
+
     <footer style="text-align:center; padding: 24px 0 16px 0; color: #888; font-size: 1em; background: #f5f8fa;">
         Credits: <a href="https://github.com/Agnohendrix" target="_blank" style="color:#159957; text-decoration:underline;">Agno</a>
         &nbsp;|&nbsp;
         <a href="https://paypal.me/Agno93" target="_blank" style="color:#159957; text-decoration:underline;">Offer me a coffee</a>
     </footer>
     <script>
+
+        document.title = "Codici sconto aggiornati oggi - " + new Date().toLocaleDateString();
         // Funzione di utilità per confrontare le date (formato: dd/mm/yyyy)
         function isCouponValid(scadenza) {
             const [giorno, mese, anno] = scadenza.split('/').map(Number);
@@ -297,13 +322,13 @@
                 btn.addEventListener('click', function() {
                     if (content.style.display === 'block') {
                         content.style.display = 'none';
-                        code.style.display = 'none';
-                        copyBtn.style.display = 'none';
+                        if(code) code.style.display = 'none';
+                        if(copyBtn) copyBtn.style.display = 'none';
                         this.textContent = 'Mostra dettagli';
                     } else {
                         content.style.display = 'block';
-                        code.style.display = 'block';
-                        copyBtn.style.display = 'block';
+                        if (code) code.style.display = 'block';
+                        if(copyBtn) copyBtn.style.display = 'block';
                         this.textContent = 'Nascondi dettagli';
                     }
                 });
@@ -336,6 +361,8 @@
 
             // carica contatori dopo che le card esistono
             loadCounters();
+            document.querySelector('.subtitle').innerText =
+            coupons.length + " coupon disponibili oggi";
         }
 
         caricaCoupon();
