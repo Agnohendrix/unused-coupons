@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agnohendrix.github.io/unused-coupons/sitemap.xml
