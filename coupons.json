@@ -68,5 +68,12 @@
     "descrizione": "Il codice promozionale prevede uno sconto del 15% per un ordine minimo di 49 euro.\n• Non cumulabile con altre promozioni e valido solo per l'acquisto di prodotti a prezzo pieno.\n• Offerta valida solo per acquisti effettuati sul sito https://www.monteverdeusa.it/ e non applicabile ad ordini effettuati in precedenza.",
     "scadenza": "15/07/2026",
     "link": "https://www.google.com/search?q=Monteverde"
+  },
+  {
+    "titolo": "Coeur de Lion - Sconto del 20%",
+    "codice": "CDLLUCKY20",
+    "descrizione": "Accedi al seguente link\n• Aggiungi a carrello il prodotto che desideri acquistare\n• Inserisci il codice sconto nell'apposito campo in fase di check-out",
+    "scadenza": "15/07/2026",
+    "link": "https://www.google.com/search?q=Coeur%20de%20Lion"
   }
 ]
