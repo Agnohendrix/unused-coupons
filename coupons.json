@@ -75,5 +75,12 @@
     "descrizione": "Accedi al seguente link\n• Aggiungi a carrello il prodotto che desideri acquistare\n• Inserisci il codice sconto nell'apposito campo in fase di check-out",
     "scadenza": "15/07/2026",
     "link": "https://www.google.com/search?q=Coeur%20de%20Lion"
+  },
+  {
+    "titolo": "Sconto del 30% per un ordine minimo di 75 Euro",
+    "codice": "LUCKY30",
+    "descrizione": "Sconto del 30% per un ordine minimo di 75 Euro",
+    "scadenza": "15/07/2026",
+    "link": "https://www.google.com/search?q=Sconto%20del%2030%25%20per%20un%20ordine%20minimo%20di%2075%20Euro"
   }
 ]
