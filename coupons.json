@@ -82,5 +82,12 @@
     "descrizione": "Sconto del 30% per un ordine minimo di 75 Euro",
     "scadenza": "15/07/2026",
     "link": "https://www.google.com/search?q=Sconto%20del%2030%25%20per%20un%20ordine%20minimo%20di%2075%20Euro"
+  },
+  {
+    "titolo": "Skon - sconto del 20%",
+    "codice": "SKON20W2",
+    "descrizione": "clicca qui e accedi o registrati\n• seleziona i prodotti che preferisci e aggiungili al carrello\n• termina l'acquisto effettuando il pagamento.",
+    "scadenza": "15/07/2026",
+    "link": "https://www.google.com/search?q=Skon"
   }
 ]
