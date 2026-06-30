@@ -152,5 +152,12 @@
     "descrizione": "Accedi al sito https://www.kamiceria.it/\n• Inserisci il codice sconto nella pagina del carrello oppure al momento della conferma dell'ordine, nello spazio dedicato al codice sconto.\n• Clicca su \"APPLICA\" ed il valore del buono sconto verrà scalato dal totale da pagare.",
     "scadenza": "15/07/2026",
     "link": "https://www.google.com/search?q=Kamiceria"
+  },
+  {
+    "titolo": "Satispay - Welcome Bonus di 15 euro",
+    "codice": "LUCKY15",
+    "descrizione": "Vai qui\n• Inserisci il tuo numero di telefono e clicca su \"Associa\" per collegare il codice promo al tuo numero.\n• Scarica l'app su App Store, Google Play o App Gallery",
+    "scadenza": "15/07/2026",
+    "link": "https://www.google.com/search?q=Satispay"
   }
 ]
